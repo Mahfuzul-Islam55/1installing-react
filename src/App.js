@@ -12,14 +12,24 @@ import {fetchData} from './api/getUrl';
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state={
+      data:{}
+    }
+  }
+  
   async componentDidMount(){
-     const data=await fetchData();
-     console.log(data)
+     const fetchedData=await fetchData();
+
+     this.setState({data:fetchedData});
+     console.log(fetchedData)
   }
   render() {
+
     return (
      <Fragment>
-       <Cards></Cards>
+       <Cards data={this.state.data}></Cards>
       <Chart></Chart>
       <CountryPicker></CountryPicker>
      </Fragment>
