@@ -1,10 +1,11 @@
 import React from 'react';
+import { Fragment } from 'react';
 
 const CountryPicker = () => {
     return (
-        <div>
-            
-        </div>
+        <Fragment>
+            <h1 className="text-justify"></h1>
+        </Fragment>
     );
 };
 

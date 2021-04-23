@@ -5,8 +5,7 @@ import './App.css';
 import Cards from './components/Cards/Cards';
 import Chart from './components/Chart/Chart';
 import CountryPicker from './components/CountryPicker/CountryPicker';
-import HooksCounter from './components/HooksCounter';
-import {fetchData} from './api/getUrl';
+import {fetchDailyData, fetchData} from './api/getUrl';
 
 
 
@@ -15,23 +14,25 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state={
-      data:{}
+      data:{},
+      chartData:[]
     }
   }
   
   async componentDidMount(){
      const fetchedData=await fetchData();
-
+     const fetchDataDaily=await fetchDailyData();
      this.setState({data:fetchedData});
-     console.log(fetchedData)
+     this.setState({chartData:fetchDataDaily})
+    
   }
   render() {
 
     return (
      <Fragment>
        <Cards data={this.state.data}></Cards>
-      <Chart></Chart>
-      <CountryPicker></CountryPicker>
+       <CountryPicker></CountryPicker>
+      <Chart chartData={this.state.chartData}></Chart>
      </Fragment>
     );
   }
