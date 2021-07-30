@@ -1,24 +1,21 @@
 import { Container } from '@material-ui/core';
-import React,{useState,useEffect} from 'react';
-import { Fragment } from 'react';
+import React,{useState,useEffect,Fragment} from 'react';
+
 import { Line,Bar } from 'react-chartjs-2';
 import { fetchDailyData } from '../../api/getUrl';
 
 
 const Chart = (props) => {
+
     const [dailyData,setDailyData]=useState([]);
     const dataDaily=props.chartData;
     const countryData=props.data;
    
-    
     useEffect(()=>{
         const fetchAPI=async()=>{
             setDailyData(await fetchDailyData());
         }
-        
         fetchAPI();
-        
-      
     },[]);
 
     const lineChart=(
@@ -43,10 +40,10 @@ const Chart = (props) => {
                         }
                     ]
                 }}
-            
             />):null
     )
     
+
     const barChart=(
         countryData.confirmed
         ?(<Bar
@@ -62,17 +59,16 @@ const Chart = (props) => {
                 legend:{display:false},
                 title:{display:true,text:`Current State in ${props.country}`}
             }}/>
-            ):null
+        ):null
     );
    
-
-
     return (
+
         <Fragment className="mt-5">
-            <Container className="marginTop-5 !important" style={{width:"70%"}}>
-           {props.country? barChart:lineChart}
-           </Container>
-           </Fragment>
+             <Container className="marginTop-5 !important" style={{width:"70%"}}>
+                 {props.country? barChart:lineChart}
+             </Container>
+        </Fragment>
        
     );
 };

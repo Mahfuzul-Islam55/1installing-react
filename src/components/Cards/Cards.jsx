@@ -1,13 +1,18 @@
 import { CardContent, Grid, Typography,Card } from '@material-ui/core';
 import React from 'react';
 import CountUp from 'react-countup';
-import styles from './Cards.module.css';
+
+
+
 const Cards = ({data:{confirmed,recovered,deaths,lastUpdate}}) => {
+
     if(!confirmed){
         return 'Loading...';
     }
+
     return (
-        <div className={styles.container}>
+
+        <div>
             <Grid container spacing={3} justify="center">
                 <Grid item component={Card} xm={12} md={3}>
                     <CardContent>
@@ -17,6 +22,7 @@ const Cards = ({data:{confirmed,recovered,deaths,lastUpdate}}) => {
                         <Typography color="body2">Number of active cases of covid 19.</Typography>
                     </CardContent>
                 </Grid>
+
                 <Grid item component={Card}  xm={12} md={3}>
                     <CardContent>
                         <Typography color="textSecondary" gutterBottom>Recoverd</Typography>
@@ -25,6 +31,7 @@ const Cards = ({data:{confirmed,recovered,deaths,lastUpdate}}) => {
                         <Typography color="body2">Number of recoverd case of covid 19.</Typography>
                     </CardContent>
                 </Grid>
+
                 <Grid item component={Card}  xm={12} md={3}>
                     <CardContent>
                         <Typography color="textSecondary" gutterBottom>Deaths</Typography>
@@ -33,7 +40,7 @@ const Cards = ({data:{confirmed,recovered,deaths,lastUpdate}}) => {
                         <Typography color="body2">Number of deaths of covid 19.</Typography>
                     </CardContent>
                 </Grid>
-
+                
             </Grid>
         </div>
     );
